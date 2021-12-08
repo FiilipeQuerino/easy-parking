@@ -21,9 +21,9 @@
                         General
                     </p>
                     <ul class="menu-list">
-                        <li><a href="index.html">Vagas</a></li>
-                        <li><a href="../ruas/index.html">Ruas</a></li>
-                        <li><a href="../cidades/index.html">Cidades</a></li>
+                        <li><a class="is-active" href="index.php">Vagas</a></li>
+                        <li><a href="../ruas/index.php">Ruas</a></li>
+                        <li><a href="../cidades/index.php">Cidades</a></li>
                     </ul>
 
                 </aside>
