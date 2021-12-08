@@ -27,14 +27,17 @@
                     </ul>
                 </aside>
             </div>
-            <div class="column is-9">
-                <div class="field">
-                    <label class="label">Cidade</label>
-                    <div class="control">
-                        <input class="input" type="text" placeholder="Exemplo: Criciuma" style="width: 500px;">
+            <form method="post" action="../../routes/insert.php">
+                <div class="column is-9">
+                    <div class="field">
+                        <label class="label">Cidade</label>
+                        <div class="control">
+                            <input class="input" name="nm_cidade" type="text" placeholder="Exemplo: Criciuma" style="width: 500px;">
+                        </div>
                     </div>
+                    <input class="button" type="submit" value="Cadastrar">
                 </div>
-            </div>
+            </form>
         </div>
         <script async type="text/javascript" src="../js/bulma.js"></script>
         <script src="https://kit.fontawesome.com/44cff19db5.js" crossorigin="anonymous"></script>

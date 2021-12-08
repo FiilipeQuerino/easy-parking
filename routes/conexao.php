@@ -1,2 +1,2 @@
 <?php
-    $conexao = mysqli_connect("localhost", "root", "", "estaciona");
+    $conexao = mysqli_connect("localhost", "root", "", "easyparking");
