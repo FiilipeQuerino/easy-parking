@@ -25,11 +25,19 @@
                         <li><a href="../ruas/index.php">Ruas</a></li>
                         <li><a class="is-active" href="index.php">Cidades</a></li>
                     </ul>
-
                 </aside>
+            </div>
+            <div class="column is-9">
+                <div class="field">
+                    <label class="label">Cidade</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Exemplo: Criciuma" style="width: 500px;">
+                    </div>
+                </div>
             </div>
         </div>
         <script async type="text/javascript" src="../js/bulma.js"></script>
+        <script src="https://kit.fontawesome.com/44cff19db5.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

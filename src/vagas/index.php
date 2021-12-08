@@ -61,27 +61,62 @@
                                             <tr id="henriquelage1">
                                                 <td width="5%"></td>
                                                 <td>Vaga 1</td>
-                                                <td class="level-right"><a class="button is-small is-primary"
-                                                        href="#">Liberada</a></td>
+                                                <td class="level-right"><a class="button is-small is-primary" href="#">Liberada</a></td>
                                             </tr>
                                             <tr id="henriquelage2">
                                                 <td width="5%"></td>
                                                 <td>Vaga 2</td>
-                                                <td class="level-right"><a class="button is-small is-primary"
-                                                        href="#">Liberada</a></td>
+                                                <td class="level-right"><a class="button is-small is-primary" href="#">Liberada</a></td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                             <footer class="card-footer">
-                                <a href="#" class="card-footer-item">Adicionar vaga</a>
+                                <a href="#" id="modal-cadastrar-vaga" class="card-footer-item">Adicionar vaga</a>
+                                <div class="modal" id="modal">
+                                    <div class="modal-background"></div>
+                                    <div class="modal-content">
+                                        <header class="modal-card-head">
+                                            <p class="modal-card-title">Cadastro de vaga</p>
+                                            <button class="delete" aria-label="close" id="fechar-modal"></button>
+                                        </header>
+                                        <section class="modal-card-body">
+                                            
+                                        <div class="field">
+                                            <label class="label">CPF</label>
+                                            <div class="control">
+                                                <div>
+                                                    <input class="input" type="text" style="width: 500px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </section>
+                                        <footer class="modal-card-foot">
+                                            <button class="button is-success">Save changes</button>
+                                            <button class="button" id="fechar-modal-cancelar">Cancel</button>
+                                        </footer>
+                                    </div>
+                                </div>
                             </footer>
-                        </div>                   
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <script>
+            var elemento = document.getElementById('modal-cadastrar-vaga').addEventListener('mousedown', () => {
+                var elemento2 = document.getElementById('modal').classList.add('is-active')
+            })
+
+            var fechar = document.getElementById('fechar-modal').addEventListener('mousedown', () => {
+                var elemento2 = document.getElementById('modal').classList.remove('is-active')
+            })
+
+            var fecharmodal = document.getElementById('fechar-modal-cancelar').addEventListener('mousedown', () => {
+                var elemento2 = document.getElementById('modal').classList.remove('is-active')
+            })
+        </script>
         <script async type="text/javascript" src="../js/bulma.js"></script>
 </body>
 
