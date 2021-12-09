@@ -18,7 +18,7 @@
             <div class="column is-3 ">
                 <aside class="menu is-hidden-mobile">
                     <p class="menu-label">
-                        General
+                        Administrador
                     </p>
                     <ul class="menu-list">
                         <li><a href="../vagas/index.php">Vagas</a></li>

@@ -18,7 +18,7 @@
             <div class="column is-3 ">
                 <aside class="menu is-hidden-mobile">
                     <p class="menu-label">
-                        General
+                        Administrador
                     </p>
                     <ul class="menu-list">
                         <li><a class="is-active" href="index.php">Vagas</a></li>
@@ -35,18 +35,6 @@
                 </aside>
             </div>
             <div class="column is-9">
-                <section class="hero is-info welcome is-small">
-                    <div class="hero-body">
-                        <div class="container">
-                            <h1 class="title">
-                                Ola, seja bem-vindo.
-                            </h1>
-                            <h2 class="subtitle">
-                                Aqui abaixo estão as ruas com suas respectivas vagas
-                            </h2>
-                        </div>
-                    </div>
-                </section>
                 <div class="columns is-multiline">
                     <div class="column is-one-third">
                         <div class="card events-card">
