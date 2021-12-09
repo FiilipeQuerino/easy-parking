@@ -25,10 +25,55 @@
                         <li><a class="is-active" href="index.php">Ruas</a></li>
                         <li><a href="../cidades/index.php">Cidades</a></li>
                     </ul>
-
                 </aside>
             </div>
+            <button class="button is-success" id="modal-cadastrar-vaga">+ Cadastrar</button>
+            <div class="modal" id="modal">
+                <div class="modal-background"></div>
+                <div class="modal-content">
+                    <header class="modal-card-head">
+                        <p class="modal-card-title">Cadastro de ruas</p>
+                        <button class="delete" aria-label="close" id="fechar-modal"></button>
+                    </header>
+                    <section class="modal-card-body">
+                        <form method="post" action="../../routes/insert.php">
+                            <div class="column is-9">
+                                <label class="label" for="select">Cidade</label>
+                                <div class="select" style="margin-bottom: 30px;" id="select">
+                                    <select>
+                                        <option>1</option>
+                                        <option>2</option>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <label class="label">Rua</label>
+                                    <div class="control">
+                                        <input class="input" name="nm_rua" type="text" placeholder="Exemplo: Criciuma" style="width: 500px;">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                    <footer class="modal-card-foot">
+                        <button class="button is-success" type="submit" value="Cadastrar">Cadastrar</button>
+                        <button class="button" id="fechar-modal-cancelar">Cancel</button>
+                    </footer>
+                </div>
+            </div>
         </div>
+        <script>
+            var elemento = document.getElementById('modal-cadastrar-vaga').addEventListener('mousedown', () => {
+                var elemento2 = document.getElementById('modal').classList.add('is-active')
+            })
+
+            var fechar = document.getElementById('fechar-modal').addEventListener('mousedown', () => {
+                var elemento2 = document.getElementById('modal').classList.remove('is-active')
+            })
+
+            var fecharmodal = document.getElementById('fechar-modal-cancelar').addEventListener('mousedown', () => {
+                var elemento2 = document.getElementById('modal').classList.remove('is-active')
+            })
+        </script>
         <script async type="text/javascript" src="../js/bulma.js"></script>
 </body>
 

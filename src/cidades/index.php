@@ -27,18 +27,52 @@
                     </ul>
                 </aside>
             </div>
-            <form method="post" action="../../routes/insert.php">
-                <div class="column is-9">
-                    <div class="field">
-                        <label class="label">Cidade</label>
-                        <div class="control">
-                            <input class="input" name="nm_cidade" type="text" placeholder="Exemplo: Criciuma" style="width: 500px;">
-                        </div>
-                    </div>
-                    <input class="button" type="submit" value="Cadastrar">
+            <button class="button is-success" id="modal-cadastrar-vaga">+ Cadastrar</button>
+            <div class="modal" id="modal">
+                <div class="modal-background"></div>
+                <div class="modal-content">
+                    <header class="modal-card-head">
+                        <p class="modal-card-title">Cadastro de cidades</p>
+                        <button class="delete" aria-label="close" id="fechar-modal"></button>
+                    </header>
+                    <section class="modal-card-body">
+                        <form method="post" action="../../routes/insert.php">
+                            <div class="column is-9">
+                                <div class="field">
+                                    <label class="label">Cidade</label>
+                                    <div class="control">
+                                        <input class="input" name="nm_cidade" type="text" placeholder="Exemplo: Criciuma" style="width: 500px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="select">
+                                <select>
+                                    <option>SC</option>
+                                    <option></option>
+                                </select>
+                            </div>
+                        </form>
+                    </section>
+                    <footer class="modal-card-foot">
+                        <button class="button is-success" type="submit" value="Cadastrar">Cadastrar</button>
+                        <button class="button" id="fechar-modal-cancelar">Cancel</button>
+                    </footer>
                 </div>
-            </form>
+            </div>
         </div>
+        <script>
+            var elemento = document.getElementById('modal-cadastrar-vaga').addEventListener('mousedown', () => {
+                var elemento2 = document.getElementById('modal').classList.add('is-active')
+            })
+
+            var fechar = document.getElementById('fechar-modal').addEventListener('mousedown', () => {
+                var elemento2 = document.getElementById('modal').classList.remove('is-active')
+            })
+
+            var fecharmodal = document.getElementById('fechar-modal-cancelar').addEventListener('mousedown', () => {
+                var elemento2 = document.getElementById('modal').classList.remove('is-active')
+            })
+        </script>
         <script async type="text/javascript" src="../js/bulma.js"></script>
         <script src="https://kit.fontawesome.com/44cff19db5.js" crossorigin="anonymous"></script>
 </body>
