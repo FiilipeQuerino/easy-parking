@@ -105,15 +105,15 @@
             </div>
         </div>
         <script>
-            var elemento = document.getElementById('modal-cadastrar-vaga').addEventListener('mousedown', () => {
+            var elemento = document.getElementById('modal-cadastrar-vaga').addEventListener('mouseup', () => {
                 var elemento2 = document.getElementById('modal').classList.add('is-active')
             })
 
-            var fechar = document.getElementById('fechar-modal').addEventListener('mousedown', () => {
+            var fechar = document.getElementById('fechar-modal').addEventListener('mouseup', () => {
                 var elemento2 = document.getElementById('modal').classList.remove('is-active')
             })
 
-            var fecharmodal = document.getElementById('fechar-modal-cancelar').addEventListener('mousedown', () => {
+            var fecharmodal = document.getElementById('fechar-modal-cancelar').addEventListener('mouseup', () => {
                 var elemento2 = document.getElementById('modal').classList.remove('is-active')
             })
         </script>

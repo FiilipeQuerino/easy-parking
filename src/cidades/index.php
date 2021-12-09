@@ -27,17 +27,30 @@
                     </ul>
                 </aside>
             </div>
-            <button class="button is-success" id="modal-cadastrar-vaga">+ Cadastrar</button>
+            <table class="table is-fullwidth">
+                <thead style="font-size: 18;">
+                    <th>Id</th>
+                    <th>Cidade</th>
+                    <th>Estado</th>
+                    <th style="text-align: right;"> <button class="button is-success" onclick="abrirModal('cadastro')" id="modal-cadastrar-cidade">+ Cadastrar</button></th>
+                </thead>
+                <tbody>
+                    <td>1</td>
+                    <td>Criciúma</td>
+                    <td>SC</td>
+                    <td style="text-align:right ;"><a style="color: black;"><i id="abrir-modal-editar" onclick="abrirModal('edicao')" class="fas fa-pencil-alt" style="margin-right: 18px;"></i></a><i class="fas fa-trash-alt"></i></td>
+                </tbody>
+            </table>
             <div class="modal" id="modal">
                 <div class="modal-background"></div>
                 <div class="modal-content">
                     <header class="modal-card-head">
-                        <p class="modal-card-title">Cadastro de cidades</p>
-                        <button class="delete" aria-label="close" id="fechar-modal"></button>
+                        <p id="titulo-modal" class="modal-card-title">Cadastro de cidades</p>
+                        <button class="delete" aria-label="close" onclick="fecharModal()" id="fechar-modal"></button>
                     </header>
                     <section class="modal-card-body">
                         <form method="post" action="../../routes/insert.php">
-                            <div class="column is-9">
+                            <div style="margin-bottom: 15px;">
                                 <div class="field">
                                     <label class="label">Cidade</label>
                                     <div class="control">
@@ -55,24 +68,12 @@
                     </section>
                     <footer class="modal-card-foot">
                         <button class="button is-success" type="submit" value="Cadastrar">Cadastrar</button>
-                        <button class="button" id="fechar-modal-cancelar">Cancel</button>
+                        <button class="button" id="fechar-modal-cancelar" onclick="fecharModal()">Cancel</button>
                     </footer>
                 </div>
             </div>
         </div>
-        <script>
-            var elemento = document.getElementById('modal-cadastrar-vaga').addEventListener('mousedown', () => {
-                var elemento2 = document.getElementById('modal').classList.add('is-active')
-            })
-
-            var fechar = document.getElementById('fechar-modal').addEventListener('mousedown', () => {
-                var elemento2 = document.getElementById('modal').classList.remove('is-active')
-            })
-
-            var fecharmodal = document.getElementById('fechar-modal-cancelar').addEventListener('mousedown', () => {
-                var elemento2 = document.getElementById('modal').classList.remove('is-active')
-            })
-        </script>
+        <script src="./js/cidadeController.js"></script>
         <script async type="text/javascript" src="../js/bulma.js"></script>
         <script src="https://kit.fontawesome.com/44cff19db5.js" crossorigin="anonymous"></script>
 </body>
