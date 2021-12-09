@@ -1,15 +1,21 @@
-function abrirModal(params) {
-    var modal = document.getElementById('modal');
-
-    if (params == "edicao") {
-        modal.classList.add('is-active');
-        return document.getElementById('titulo-modal').innerText = 'Editando cadastro';
-    }
+function abrirModalCadastro() {
+    var modal = document.getElementById('modal-cadastro');
 
     return modal.classList.add('is-active');
 }
 
-function fecharModal() {
-    var modal = document.getElementById('modal');
+function abrirModalEdicao() {
+    var modal = document.getElementById('modal-edicao');
+
+    return modal.classList.add('is-active');
+}
+
+function fecharModalCadastro() {
+    var modal = document.getElementById('modal-cadastro');
+    return modal.classList.remove('is-active');
+}
+
+function fecharModalEdicao() {
+    var modal = document.getElementById('modal-edicao');
     return modal.classList.remove('is-active');
 }

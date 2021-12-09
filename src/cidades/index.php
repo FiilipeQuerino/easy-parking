@@ -1,3 +1,10 @@
+<?php
+    include '../../routes/conexao.php';
+    $sqlEstado = "SELECT id_estado, sigla FROM estado";
+    $resultadoEstado = mysqli_query($conexao, $sqlEstado);           
+    $sqlCidade = "SELECT cidade.id_cidade, cidade.nm_cidade, cidade.id_estado, estado.sigla FROM cidade, estado WHERE cidade.id_estado = estado.id_estado";
+    $resultadoCidade = mysqli_query($conexao, $sqlCidade);
+?>
 <html>
 
 <head>
@@ -35,16 +42,32 @@
             </div>
             <table class="table is-fullwidth">
                 <thead style="font-size: 18;">
-                    <th>Id</th>
+                    <th>ID</th>
                     <th>Cidade</th>
                     <th>Estado</th>
                     <th style="text-align: right;"> <button class="button is-success" onclick="abrirModal('cadastro')" id="modal-cadastrar-cidade">+ Cadastrar</button></th>
                 </thead>
                 <tbody>
-                    <td>1</td>
-                    <td>Criciúma</td>
-                    <td>SC</td>
-                    <td style="text-align:right ;"><a style="color: black;"><i id="abrir-modal-editar" onclick="abrirModal('edicao')" class="fas fa-pencil-alt" style="margin-right: 18px;"></i></a><i class="fas fa-trash-alt"></i></td>
+                    <?php
+                    while($linha = mysqli_fetch_array($resultadoCidade)) {
+                        echo "<tr>";
+                        echo "<td>$linha[id_cidade]</td>";
+                        echo "<td>$linha[nm_cidade]</td>";
+                        echo "<td>$linha[sigla]</td>";
+                        //echo "<td style="text-align:right ;"><a style="color: black;"><i id="abrir-modal-editar" onclick="abrirModal('edicao')" class="fas fa-pencil-alt" style="margin-right: 18px;"></i></a></td>;
+                        echo "<td>";
+                        echo "<a href='../../routes/excluirCidade.php?id=$linha[id_cidade]'>";
+                        echo "🗑";
+                        echo "</a>";
+                        echo "</td>";
+                        
+                        echo "<td>";
+                        echo "<a href='../../routes/editaCidade.php?id=$linha[id_cidade]'>";
+                        echo "";
+                        echo "</a>";
+                        echo "</td>";
+                    }
+                    ?>                   
                 </tbody>
             </table>
             <div class="modal" id="modal">
@@ -55,27 +78,32 @@
                         <button class="delete" aria-label="close" onclick="fecharModal()" id="fechar-modal"></button>
                     </header>
                     <section class="modal-card-body">
-                        <form method="post" action="../../routes/insert.php">
-                            <div style="margin-bottom: 15px;">
-                                <div class="field">
-                                    <label class="label">Cidade</label>
-                                    <div class="control">
-                                        <input class="input" name="nm_cidade" type="text" placeholder="Exemplo: Criciuma" style="width: 500px;">
+                        <form method="post" action="../../routes/insertCidade.php">
+                                <div class="column is-9">
+                                    <div class="field">
+                                        <label class="label">Cidade</label>
+                                        <div class="control">
+                                            <input class="input" name="nm_cidade" type="text" placeholder="Exemplo: Criciuma" style="width: 500px;">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="select">
-                                <select>
-                                    <option>SC</option>
-                                    <option></option>
-                                </select>
-                            </div>
+                                <div class="select">
+                                    <select name="id_estado">                              
+                                        <?php
+                                            while ($linha = mysqli_fetch_array($resultadoEstado)) {
+                                                echo "<option value=$linha[id_estado]>";
+                                                echo $linha['sigla'];
+                                                echo "</option>";
+                                            }
+                                        ?>
+                                    </select>
+                                </div>
+                                <footer class="modal-card-foot">
+                                    <button class="button is-success" type="submit" value="Cadastrar">Cadastrar</button>
+                                    <button class="button" id="fechar-modal-cancelar">Cancel</button>
+                                </footer>
                         </form>
                     </section>
-                    <footer class="modal-card-foot">
-                        <button class="button is-success" type="submit" value="Cadastrar">Cadastrar</button>
-                        <button class="button" id="fechar-modal-cancelar" onclick="fecharModal()">Cancel</button>
-                    </footer>
                 </div>
             </div>
         </div>

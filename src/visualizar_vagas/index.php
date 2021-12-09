@@ -18,10 +18,10 @@
             <div class="column is-3 ">
                 <aside class="menu is-hidden-mobile">
                     <p class="menu-label">
-                    Administrador
+                        Administrador
                     </p>
                     <ul class="menu-list">
-                        <li><a  href="../vagas/index.php">Vagas</a></li>
+                        <li><a href="../vagas/index.php">Vagas</a></li>
                         <li><a href="../ruas/index.php">Ruas</a></li>
                         <li><a href="../cidades/index.php">Cidades</a></li>
                     </ul>
@@ -54,11 +54,6 @@
                                 <p class="card-header-title">
                                     Rua Henrique lage
                                 </p>
-                                <a href="#" class="card-header-icon" aria-label="more options">
-                                    <span class="icon">
-                                        <i class="fa fa-angle-down" aria-hidden="true"></i>
-                                    </span>
-                                </a>
                             </header>
                             <div class="card-table">
                                 <div class="content">
@@ -67,13 +62,37 @@
                                             <tr id="henriquelage1">
                                                 <td width="5%"></td>
                                                 <td>Vaga 1</td>
-                                                <td class="level-right"><a class="button is-small is-primary" href="#">Liberada</a></td>
+                                                <td class="level-right"><a class="button is-small is-primary" onclick="abrirModal()" href="#">Liberada</a></td>
                                             </tr>
                                             <tr id="henriquelage2">
                                                 <td width="5%"></td>
                                                 <td>Vaga 2</td>
-                                                <td class="level-right"><a class="button is-small is-primary" href="#">Liberada</a></td>
+                                                <td class="level-right"><a class="button is-small is-primary" onclick="abrirModal()" href="#">Liberada</a></td>
                                             </tr>
+                                            <div class="modal" id="modal">
+                                                <div class="modal-background"></div>
+                                                <div class="modal-content">
+                                                    <header class="modal-card-head">
+                                                        <p class="modal-card-title">Cadastro de vaga</p>
+                                                        <button class="delete" aria-label="close" id="fechar-modal"></button>
+                                                    </header>
+                                                    <section class="modal-card-body">
+
+                                                        <div class="field">
+                                                            <label class="label">CPF</label>
+                                                            <div class="control">
+                                                                <div>
+                                                                    <input class="input" type="text" style="width: 500px;">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </section>
+                                                    <footer class="modal-card-foot">
+                                                        <button class="button is-success">Save changes</button>
+                                                        <button class="button" id="fechar-modal-cancelar">Cancel</button>
+                                                    </footer>
+                                                </div>
+                                            </div>
                                         </tbody>
                                     </table>
                                 </div>
@@ -84,9 +103,9 @@
             </div>
         </div>
         <script>
-            var elemento = document.getElementById('modal-cadastrar-vaga').addEventListener('mouseup', () => {
-                var elemento2 = document.getElementById('modal').classList.add('is-active')
-            })
+            function abrirModal() {
+                return document.getElementById('modal').classList.add('is-active')
+            }
 
             var fechar = document.getElementById('fechar-modal').addEventListener('mouseup', () => {
                 var elemento2 = document.getElementById('modal').classList.remove('is-active')
