@@ -118,6 +118,7 @@
             })
         </script>
         <script async type="text/javascript" src="../js/bulma.js"></script>
+        <script src="https://kit.fontawesome.com/44cff19db5.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

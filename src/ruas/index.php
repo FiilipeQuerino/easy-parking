@@ -27,7 +27,21 @@
                     </ul>
                 </aside>
             </div>
-            <button class="button is-success" id="modal-cadastrar-vaga">+ Cadastrar</button>
+
+            <table class="table is-fullwidth">
+                <thead style="font-size: 18;">
+                    <th>Id</th>
+                    <th>Rua</th>
+                    <th>Cidade</th>
+                    <th style="text-align: right;"> <button class="button is-success" id="modal-cadastrar-vaga">+ Cadastrar</button></th>
+                </thead>
+                <tbody>
+                    <td>1</td>
+                    <td>henrique lage</td>
+                    <td>criciuma</td>
+                    <td style="text-align:right ;"><i class="fas fa-pencil-alt" style="margin-right: 18px;"></i><i class="fas fa-trash-alt"></i></td>
+                </tbody>
+            </table>
             <div class="modal" id="modal">
                 <div class="modal-background"></div>
                 <div class="modal-content">
@@ -75,6 +89,7 @@
             })
         </script>
         <script async type="text/javascript" src="../js/bulma.js"></script>
+        <script src="https://kit.fontawesome.com/44cff19db5.js" crossorigin="anonymous"></script>
 </body>
 
 </html>
