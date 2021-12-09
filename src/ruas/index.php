@@ -18,12 +18,18 @@
             <div class="column is-3 ">
                 <aside class="menu is-hidden-mobile">
                     <p class="menu-label">
-                        General
+                        Administrador
                     </p>
                     <ul class="menu-list">
                         <li><a href="../vagas/index.php">Vagas</a></li>
                         <li><a class="is-active" href="index.php">Ruas</a></li>
                         <li><a href="../cidades/index.php">Cidades</a></li>
+                    </ul>
+                    <p class="menu-label">
+                        Usuario
+                    </p>
+                    <ul class="menu-list">
+                        <li><a href="../visualizar_vagas/index.php">Vagas</a></li>
                     </ul>
                 </aside>
             </div>

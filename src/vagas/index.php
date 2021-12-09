@@ -25,6 +25,12 @@
                         <li><a href="../ruas/index.php">Ruas</a></li>
                         <li><a href="../cidades/index.php">Cidades</a></li>
                     </ul>
+                    <p class="menu-label">
+                        Usuario
+                    </p>
+                    <ul class="menu-list">
+                        <li><a href="../visualizar_vagas/index.php">Vagas</a></li>
+                    </ul>
 
                 </aside>
             </div>
