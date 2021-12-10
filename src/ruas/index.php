@@ -1,3 +1,13 @@
+<?php
+include '../../routes/conexao.php';
+$sqlCidade = "SELECT id_cidade, nm_cidade FROM cidade";
+
+$resultadoCidade = mysqli_query($conexao, $sqlCidade);
+$buscaCidade = mysqli_query($conexao, $sqlCidade);
+$sqlRuas = "SELECT rua.id_rua, rua.nm_rua, rua.id_cidade, cidade.nm_cidade FROM rua, cidade WHERE rua.id_cidade = cidade.id_cidade";
+$resultadoRuas = mysqli_query($conexao, $sqlRuas);
+//$resultado = mysqli_query($conexao, $sql);
+?>
 <html>
 
 <head>
@@ -36,16 +46,28 @@
 
             <table class="table is-fullwidth">
                 <thead style="font-size: 18;">
-                    <th>Id</th>
+                    <th>ID</th>
                     <th>Rua</th>
                     <th>Cidade</th>
-                    <th style="text-align: right;"> <button class="button is-success" onclick="abrirModal('cadastro')" id="modal-cadastrar-vaga">+ Cadastrar</button></th>
+                    <th style="text-align: right;"> <button class="button is-success" onclick="abrirModal()" id="modal-cadastrar-vaga">+ Cadastrar</button></th>
                 </thead>
                 <tbody>
-                    <td>1</td>
-                    <td>henrique lage</td>
-                    <td>criciuma</td>
-                    <td style="text-align:right ;"><a style="color: black;"><i id="abrir-modal-editar" onclick="abrirModal('edicao')" class="fas fa-pencil-alt" style="margin-right: 18px;"></i></a><i class="fas fa-trash-alt"></i></td>
+                    <?php
+                    while ($linha = mysqli_fetch_array($resultadoRuas)) {
+                        echo "<tr>";
+                        echo "<td>$linha[id_rua]</td>";
+                        echo "<td>$linha[nm_rua]</td>";
+                        echo "<td>$linha[nm_cidade]</td>";
+                    ?>
+                        <td style="text-align:right ;">
+                            <a style="color: black;" href="../../routes/editaRua.php?id_rua=<?php echo $linha['id_rua']; ?>">
+                                <i id="abrir-modal-editar" class="fas fa-pencil-alt" style="margin-right: 18px;"></i>
+                            </a>
+                            <a style="color: black;" href="../../routes/excluirRuas.php?id=<?php echo $linha['id_rua']; ?>"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    <?php
+                    }
+                    ?>
                 </tbody>
             </table>
             <div class="modal" id="modal">
@@ -56,20 +78,25 @@
                         <button class="delete" aria-label="close" id="fechar-modal" onclick="fecharModal()"></button>
                     </header>
                     <section class="modal-card-body" style="padding: 0;">
-                        <form method="post" action="../../routes/insert.php">
+                        <form method="post" action="../../routes/insertRuas.php">
                             <div class="column is-9">
-                                <label class="label" for="select">Cidade</label>
-                                <div class="select" style="margin-bottom: 30px;" id="select">
-                                    <select>
-                                        <option>1</option>
-                                        <option>2</option>
-                                    </select>
-                                </div>
                                 <div class="field">
                                     <label class="label">Rua</label>
                                     <div class="control">
-                                        <input class="input" name="nm_rua" type="text" placeholder="Exemplo: Criciuma" style="width: 500px;">
+                                        <input class="input" style="margin-bottom: 30px;" name="nm_rua" type="text" placeholder="Exemplo: Joaquim Nabuco" style="width: 500px;">
                                     </div>
+                                </div>
+                                <label class="label" for="select">Cidade</label>
+                                <div class="select" id="select">
+                                    <select name="id_cidade">
+                                        <?php
+                                        while ($linha = mysqli_fetch_array($resultadoCidade)) {
+                                            echo "<option value=$linha[id_cidade]>";
+                                            echo $linha['nm_cidade'];
+                                            echo "</option>";
+                                        }
+                                        ?>
+                                    </select>
                                 </div>
                             </div>
                             <footer class="modal-card-foot">
