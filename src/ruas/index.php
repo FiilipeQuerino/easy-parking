@@ -49,7 +49,7 @@ $resultadoRuas = mysqli_query($conexao, $sqlRuas);
                     <th>Id</th>
                     <th>Rua</th>
                     <th>Cidade</th>
-                    <th style="text-align: right;"> <button class="button is-success" onclick="abrirModalCadastro()" id="modal-cadastrar-vaga">+ Cadastrar</button></th>
+                    <th style="text-align: right;"> <button class="button is-success" onclick="abrirModal()" id="modal-cadastrar-vaga">+ Cadastrar</button></th>
                 </thead>
                 <tbody>
                     <?php
@@ -69,18 +69,18 @@ $resultadoRuas = mysqli_query($conexao, $sqlRuas);
 
 
                             <a style="color: black;" href="../../routes/excluirRuas.php?id=<?php echo $linha['id_rua']; ?>"><i class="fas fa-trash-alt"></i></a>
-                        </td>";
+                        </td>
                     <?php
                     }
                     ?>
                 </tbody>
             </table>
-            <div class="modal" id="modal-cadastro">
+            <div class="modal" id="modal">
                 <div class="modal-background"></div>
                 <div class="modal-content">
                     <header class="modal-card-head">
-                        <p id="titulo-modal-cadastro" class="modal-card-title">Cadastro de ruas</p>
-                        <button class="delete" aria-label="close" id="fechar-modal" onclick="fecharModalCadastro()"></button>
+                        <p id="titulo-modal" class="modal-card-title">Cadastro de ruas</p>
+                        <button class="delete" aria-label="close" id="fechar-modal" onclick="fecharModal()"></button>
                     </header>
                     <section class="modal-card-body" style="padding: 0;">
                         <form method="post" action="../../routes/insertRuas.php">
@@ -106,54 +106,7 @@ $resultadoRuas = mysqli_query($conexao, $sqlRuas);
                             </div>
                             <footer class="modal-card-foot">
                                 <button class="button is-success" type="submit" value="Cadastrar">Cadastrar</button>
-                                <button class="button" id="fechar-modal-cancelar" onclick="fecharModalCadastro()">Cancel</button>
-                            </footer>
-                        </form>
-                    </section>
-                </div>
-            </div>
-            <div class="modal" id="modal-edicao">
-                <div class="modal-background"></div>
-                <div class="modal-content">
-                    <header class="modal-card-head">
-                        <p id="titulo-modal-edicao" class="modal-card-title">Editando ruas</p>
-                        <button class="delete" aria-label="close" id="fechar-modal" onclick="fecharModalEdicao()"></button>
-                    </header>
-                    <section class="modal-card-body" style="padding: 0;">
-                        <form method="post" action="../../routes/modificaRua.php">
-                            <div class="column is-9">
-                                <label class="label" for="select">Cidade</label>
-                                <div class="select" style="margin-bottom: 30px;" id="select">
-                                    <select name="id_cidade">
-                                        <option value=" aaaaa">dasd
-                                        <?php
-
-                                            $sql = mysqli_query($conexao,"SELECT a.id_rua, a.nm_rua, a.id_cidade, cid.nm_cidade as CIDADE
-                                                            FROM rua a join cidade cid on (cid.id_cidade = a.id_cidade)
-                                                            WHERE a.id_rua = ".$id_rua.";" );
-                                            echo $sql." -----------" ;
-                                            ?>
-                                        </option>
-
-                                        <?php
-                                        while ($linha = mysqli_fetch_array($resultadoCidade)) {
-                                            echo "<option value=$linha[id_cidade]>";
-                                            echo $linha['nm_cidade'] ;
-                                            echo "</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                                <div class="field">
-                                    <label class="label">Rua</label>
-                                    <div class="control">
-                                        <input class="input" name="nm_rua" type="text" placeholder="Exemplo: Criciuma" style="width: 500px;">
-                                    </div>
-                                </div>
-                            </div>
-                            <footer class="modal-card-foot">
-                                <button class="button is-success" type="submit" value="Cadastrar">Cadastrar</button>
-                                <button class="button" id="fechar-modal-cancelar" onclick="fecharModalEdicao()">Cancel</button>
+                                <button class="button" id="fechar-modal-cancelar" onclick="fecharModal()">Cancel</button>
                             </footer>
                         </form>
                     </section>
