@@ -44,93 +44,92 @@ $resultadoRuas = mysqli_query($conexao, $sqlRuas);
 
                 </aside>
             </div>
-            <div class="column is-9">
-                <table class="table is-fullwidth">
-                    <thead style="font-size: 18;">
-                        <th>ID</th>
-                        <th>Cidade</th>
-                        <th>Rua</th>
-                        <th>Vaga</th>
-                        <th></th>
-                    </thead>
-                    <tbody>
-                        <?php
-                        while ($linha = mysqli_fetch_array($resultadoRuas)) {
-                            echo "<tr>";
-                            echo "<td>$linha[id_rua]</td>";
-                            echo "<td>$linha[nm_rua]</td>";
-                            echo "<td>$linha[nm_cidade]</td>";
-                            echo "<td>$linha[id_cidade]</td>";
-                        ?>
-                            <td class="level-right"><a class="button is-small is-primary" onclick="abrirModal()" href="#">Liberada</a></td>
-                        <?php
-                        }
-                        ?>
-                    </tbody>
-                </table>
-                <div class="modal" id="modal">
-                    <div class="modal-background"></div>
-                    <div class="modal-content">
-                        <header class="modal-card-head">
-                            <p id="titulo-modal" class="modal-card-title">Cadastro de vagas</p>
-                            <button class="delete" aria-label="close" id="fechar-modal" onclick="fecharModal()"></button>
-                        </header>
-                        <section class="modal-card-body" style="padding: 0;">
-                            <form method="post" action="../../routes/insertRuas.php">
-                                <div class="column is-9">
-                                    <label class="label" for="select">Estado</label>
-                                    <div class="select" style="margin-bottom: 30px;" id="select">
-                                        <select name="id_cidade">
-                                            <?php
-                                            while ($linha = mysqli_fetch_array($resultadoCidade)) {
-                                                echo "<option value=$linha[id_cidade]>";
-                                                echo $linha['nm_cidade'];
-                                                echo "</option>";
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                    <label class="label" for="select">Cidade</label>
-                                    <div class="select" style="margin-bottom: 30px;" id="select">
-                                        <select name="id_cidade">
-                                            <?php
-                                            while ($linha = mysqli_fetch_array($resultadoCidade)) {
-                                                echo "<option value=$linha[id_cidade]>";
-                                                echo $linha['nm_cidade'];
-                                                echo "</option>";
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                    <label class="label" for="select">Rua</label>
-                                    <div class="select" style="margin-bottom: 30px;" id="select">
-                                        <select name="id_cidade">
-                                            <?php
-                                            while ($linha = mysqli_fetch_array($resultadoCidade)) {
-                                                echo "<option value=$linha[id_cidade]>";
-                                                echo $linha['nm_cidade'];
-                                                echo "</option>";
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                    <div class="field">
-                                        <label class="label">CPF</label>
-                                        <div class="control">
-                                            <div>
-                                                <input class="input" type="text" style="width: 500px;">
-                                            </div>
+            <table class="table is-fullwidth">
+                <thead style="font-size: 18;">
+                    <th>ID</th>
+                    <th>Cidade</th>
+                    <th>Rua</th>
+                    <th>Vaga</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    <?php
+                    while ($linha = mysqli_fetch_array($resultadoRuas)) {
+                        echo "<tr>";
+                        echo "<td>$linha[id_rua]</td>";
+                        echo "<td>$linha[nm_rua]</td>";
+                        echo "<td>$linha[nm_cidade]</td>";
+                        echo "<td>$linha[id_cidade]</td>";
+                    ?>
+                        <td class="level-right"><a class="button is-small is-primary" href="#">Liberada</a></td>
+                    <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
+            <div class="modal" id="modal">
+                <div class="modal-background"></div>
+                <div class="modal-content">
+                    <header class="modal-card-head">
+                        <p id="titulo-modal" class="modal-card-title">Cadastro de vagas</p>
+                        <button class="delete" aria-label="close" id="fechar-modal" onclick="fecharModal()"></button>
+                    </header>
+                    <section class="modal-card-body" style="padding: 0;">
+                        <form method="post" action="../../routes/insertRuas.php">
+                            <div class="column is-9">
+                                <label class="label" for="select">Estado</label>
+                                <div class="select" style="margin-bottom: 30px;" id="select">
+                                    <select name="id_cidade">
+                                        <?php
+                                        while ($linha = mysqli_fetch_array($resultadoCidade)) {
+                                            echo "<option value=$linha[id_cidade]>";
+                                            echo $linha['nm_cidade'];
+                                            echo "</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <label class="label" for="select">Cidade</label>
+                                <div class="select" style="margin-bottom: 30px;" id="select">
+                                    <select name="id_cidade">
+                                        <?php
+                                        while ($linha = mysqli_fetch_array($resultadoCidade)) {
+                                            echo "<option value=$linha[id_cidade]>";
+                                            echo $linha['nm_cidade'];
+                                            echo "</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <label class="label" for="select">Rua</label>
+                                <div class="select" style="margin-bottom: 30px;" id="select">
+                                    <select name="id_cidade">
+                                        <?php
+                                        while ($linha = mysqli_fetch_array($resultadoCidade)) {
+                                            echo "<option value=$linha[id_cidade]>";
+                                            echo $linha['nm_cidade'];
+                                            echo "</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <label class="label">CPF</label>
+                                    <div class="control">
+                                        <div>
+                                            <input class="input" type="text" style="width: 500px;">
                                         </div>
                                     </div>
                                 </div>
-                                <footer class="modal-card-foot">
-                                    <button class="button is-success" type="submit" value="Cadastrar">Cadastrar</button>
-                                    <button class="button" id="fechar-modal-cancelar" onclick="fecharModal()">Cancel</button>
-                                </footer>
-                            </form>
-                        </section>
-                    </div>
+                            </div>
+                            <footer class="modal-card-foot">
+                                <button class="button is-success" type="submit" value="Cadastrar">Cadastrar</button>
+                                <button class="button" id="fechar-modal-cancelar" onclick="fecharModal()">Cancel</button>
+                            </footer>
+                        </form>
+                    </section>
                 </div>
+
             </div>
         </div>
     </div>

@@ -1,9 +1,9 @@
 <?php
-    include '../../routes/conexao.php';
-    $sqlEstado = "SELECT id_estado, sigla FROM estado";
-    $resultadoEstado = mysqli_query($conexao, $sqlEstado);           
-    $sqlCidade = "SELECT cidade.id_cidade, cidade.nm_cidade, cidade.id_estado, estado.sigla FROM cidade, estado WHERE cidade.id_estado = estado.id_estado";
-    $resultadoCidade = mysqli_query($conexao, $sqlCidade);
+include '../../routes/conexao.php';
+$sqlEstado = "SELECT id_estado, sigla FROM estado";
+$resultadoEstado = mysqli_query($conexao, $sqlEstado);
+$sqlCidade = "SELECT cidade.id_cidade, cidade.nm_cidade, cidade.id_estado, estado.sigla FROM cidade, estado WHERE cidade.id_estado = estado.id_estado";
+$resultadoCidade = mysqli_query($conexao, $sqlCidade);
 ?>
 <html>
 
@@ -49,25 +49,21 @@
                 </thead>
                 <tbody>
                     <?php
-                    while($linha = mysqli_fetch_array($resultadoCidade)) {
+                    while ($linha = mysqli_fetch_array($resultadoCidade)) {
                         echo "<tr>";
                         echo "<td>$linha[id_cidade]</td>";
                         echo "<td>$linha[nm_cidade]</td>";
                         echo "<td>$linha[sigla]</td>";
-                        //echo "<td style="text-align:right ;"><a style="color: black;"><i id="abrir-modal-editar" onclick="abrirModal('edicao')" class="fas fa-pencil-alt" style="margin-right: 18px;"></i></a></td>;
-                        echo "<td>";
-                        echo "<a href='../../routes/excluirCidade.php?id=$linha[id_cidade]'>";
-                        echo "🗑";
-                        echo "</a>";
-                        echo "</td>";
-                        
-                        echo "<td>";
-                        echo "<a href='../../routes/editaCidade.php?id=$linha[id_cidade]'>";
-                        echo "";
-                        echo "</a>";
-                        echo "</td>";
+                    ?>
+                        <td style="text-align:right ;">
+                            <a style="color: black;" href="../../routes/editaCidade.php?id=<?php echo $linha['id_cidade']; ?>">
+                                <i id="abrir-modal-editar" class="fas fa-pencil-alt" style="margin-right: 18px;"></i>
+                            </a>
+                            <a style="color: black;" href="../../routes/excluirCidade.php?id=<?php echo $linha['id_cidade']; ?>"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    <?php
                     }
-                    ?>                   
+                    ?>
                 </tbody>
             </table>
             <div class="modal" id="modal">
@@ -77,31 +73,32 @@
                         <p id="titulo-modal" class="modal-card-title">Cadastro de cidades</p>
                         <button class="delete" aria-label="close" onclick="fecharModal()" id="fechar-modal"></button>
                     </header>
-                    <section class="modal-card-body">
+                    <section class="modal-card-body" style="padding: 0;">
                         <form method="post" action="../../routes/insertCidade.php">
-                                <div class="column is-9">
-                                    <div class="field">
-                                        <label class="label">Cidade</label>
-                                        <div class="control">
-                                            <input class="input" name="nm_cidade" type="text" placeholder="Exemplo: Criciuma" style="width: 500px;">
-                                        </div>
+                            <div class="column is-9">
+                                <div class="field">
+                                    <label class="label">Cidade</label>
+                                    <div class="control">
+                                        <input class="input" style="margin-bottom: 30px;" name="nm_cidade" type="text" placeholder="Exemplo: Criciuma" style="width: 500px;">
                                     </div>
                                 </div>
-                                <div class="select">
-                                    <select name="id_estado">                              
+                                <label class="label" for="select">Estado</label>
+                                <div class="select" id="select">
+                                    <select name="id_estado">
                                         <?php
-                                            while ($linha = mysqli_fetch_array($resultadoEstado)) {
-                                                echo "<option value=$linha[id_estado]>";
-                                                echo $linha['sigla'];
-                                                echo "</option>";
-                                            }
+                                        while ($linha = mysqli_fetch_array($resultadoEstado)) {
+                                            echo "<option value=$linha[id_estado]>";
+                                            echo $linha['sigla'];
+                                            echo "</option>";
+                                        }
                                         ?>
                                     </select>
                                 </div>
-                                <footer class="modal-card-foot">
-                                    <button class="button is-success" type="submit" value="Cadastrar">Cadastrar</button>
-                                    <button class="button" id="fechar-modal-cancelar">Cancel</button>
-                                </footer>
+                            </div>
+                            <footer class="modal-card-foot">
+                                <button class="button is-success" type="submit" value="Cadastrar">Cadastrar</button>
+                                <button class="button" id="fechar-modal-cancelar">Cancel</button>
+                            </footer>
                         </form>
                     </section>
                 </div>

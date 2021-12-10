@@ -46,7 +46,7 @@ $resultadoRuas = mysqli_query($conexao, $sqlRuas);
 
             <table class="table is-fullwidth">
                 <thead style="font-size: 18;">
-                    <th>Id</th>
+                    <th>ID</th>
                     <th>Rua</th>
                     <th>Cidade</th>
                     <th style="text-align: right;"> <button class="button is-success" onclick="abrirModal()" id="modal-cadastrar-vaga">+ Cadastrar</button></th>
@@ -60,14 +60,9 @@ $resultadoRuas = mysqli_query($conexao, $sqlRuas);
                         echo "<td>$linha[nm_cidade]</td>";
                     ?>
                         <td style="text-align:right ;">
-                            <!-- <a style="color: black;">
-                                <i id="abrir-modal-editar" onclick="abrirModalEdicao()" class="fas fa-pencil-alt" style="margin-right: 18px;"></i>
-                            </a> -->
-                            <a style="color: black;" href="../../routes/editaRua.php?id_rua=<?php echo $linha['id_rua'];?>" >
+                            <a style="color: black;" href="../../routes/editaRua.php?id_rua=<?php echo $linha['id_rua']; ?>">
                                 <i id="abrir-modal-editar" class="fas fa-pencil-alt" style="margin-right: 18px;"></i>
                             </a>
-
-
                             <a style="color: black;" href="../../routes/excluirRuas.php?id=<?php echo $linha['id_rua']; ?>"><i class="fas fa-trash-alt"></i></a>
                         </td>
                     <?php
@@ -85,8 +80,14 @@ $resultadoRuas = mysqli_query($conexao, $sqlRuas);
                     <section class="modal-card-body" style="padding: 0;">
                         <form method="post" action="../../routes/insertRuas.php">
                             <div class="column is-9">
+                                <div class="field">
+                                    <label class="label">Rua</label>
+                                    <div class="control">
+                                        <input class="input" style="margin-bottom: 30px;" name="nm_rua" type="text" placeholder="Exemplo: Joaquim Nabuco" style="width: 500px;">
+                                    </div>
+                                </div>
                                 <label class="label" for="select">Cidade</label>
-                                <div class="select" style="margin-bottom: 30px;" id="select">
+                                <div class="select" id="select">
                                     <select name="id_cidade">
                                         <?php
                                         while ($linha = mysqli_fetch_array($resultadoCidade)) {
@@ -96,12 +97,6 @@ $resultadoRuas = mysqli_query($conexao, $sqlRuas);
                                         }
                                         ?>
                                     </select>
-                                </div>
-                                <div class="field">
-                                    <label class="label">Rua</label>
-                                    <div class="control">
-                                        <input class="input" name="nm_rua" type="text" placeholder="Exemplo: Criciuma" style="width: 500px;">
-                                    </div>
                                 </div>
                             </div>
                             <footer class="modal-card-foot">

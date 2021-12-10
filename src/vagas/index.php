@@ -1,12 +1,19 @@
 <?php
 include '../../routes/conexao.php';
-$sqlCidade = "SELECT id_cidade, nm_cidade FROM cidade";
 
+$sqlEstado = "SELECT id_estado, sigla FROM estado";
+$resultadoEstado = mysqli_query($conexao, $sqlEstado);
+
+$sqlCidade = "SELECT id_cidade, nm_cidade FROM cidade, estado where cidade.id_estado = estado.id_estado";
 $resultadoCidade = mysqli_query($conexao, $sqlCidade);
-$buscaCidade = mysqli_query($conexao, $sqlCidade);
+//$buscaCidade = mysqli_query($conexao, $sqlCidade);
+
 $sqlRuas = "SELECT rua.id_rua, rua.nm_rua, rua.id_cidade, cidade.nm_cidade FROM rua, cidade WHERE rua.id_cidade = cidade.id_cidade";
 $resultadoRuas = mysqli_query($conexao, $sqlRuas);
 //$resultado = mysqli_query($conexao, $sql);
+
+$sqlVagas = "SELECT id_vaga, nr_vaga, id_rua FROM vaga";
+$resultadoVagas = mysqli_query($conexao, $sqlVagas);
 ?>
 <html>
 
@@ -54,14 +61,13 @@ $resultadoRuas = mysqli_query($conexao, $sqlRuas);
                 </thead>
                 <tbody>
                     <?php
-                    while ($linha = mysqli_fetch_array($resultadoRuas)) {
+                    while ($linha = mysqli_fetch_array($resultadoVagas)) {
                         echo "<tr>";
-                        echo "<td>$linha[id_rua]</td>";
-                        echo "<td>$linha[nm_rua]</td>";
-                        echo "<td>$linha[nm_cidade]</td>";
-                        echo "<td>$linha[id_cidade]</td>";
+                        echo "<td>$linha[id_vaga]</td>";
+                        echo "<td>$linha[nr_vaga]</td>";
+                        echo "<td>$linha[ir_rua]</td>";
                     ?>
-                        <td class="level-right"><a class="button is-small is-primary" onclick="abrirModal()" href="#">Liberada</a></td>
+                        <td class="level-right"><a class="button is-small is-primary" href="#">Liberada</a></td>
                     <?php
                     }
                     ?>
@@ -69,26 +75,29 @@ $resultadoRuas = mysqli_query($conexao, $sqlRuas);
             </table>
             <div class="modal" id="modal">
                 <div class="modal-background"></div>
-                <div class="modal-content">
+                <div class="modal-content" id="rua">
                     <header class="modal-card-head">
                         <p id="titulo-modal" class="modal-card-title">Cadastro de vagas</p>
                         <button class="delete" aria-label="close" id="fechar-modal" onclick="fecharModal()"></button>
                     </header>
                     <section class="modal-card-body" style="padding: 0;">
-                        <form method="post" action="../../routes/insertRuas.php">
+
+                        <form method="post" action="../../routes/insertVagas.php">
+
                             <div class="column is-9">
                                 <label class="label" for="select">Estado</label>
                                 <div class="select" style="margin-bottom: 30px;" id="select">
                                     <select name="id_cidade">
                                         <?php
-                                        while ($linha = mysqli_fetch_array($resultadoCidade)) {
-                                            echo "<option value=$linha[id_cidade]>";
-                                            echo $linha['nm_cidade'];
+                                        while ($linha = mysqli_fetch_array($resultadoEstado)) {
+                                            echo "<option value=$linha[id_estado]>";
+                                            echo $linha['sigla'];
                                             echo "</option>";
                                         }
                                         ?>
                                     </select>
                                 </div>
+
                                 <label class="label" for="select">Cidade</label>
                                 <div class="select" style="margin-bottom: 30px;" id="select">
                                     <select name="id_cidade">
@@ -102,18 +111,23 @@ $resultadoRuas = mysqli_query($conexao, $sqlRuas);
                                     </select>
                                 </div>
                                 <label class="label" for="select">Rua</label>
+
                                 <div class="select" style="margin-bottom: 30px;" id="select">
                                     <select name="id_cidade">
                                         <?php
-                                        while ($linha = mysqli_fetch_array($resultadoCidade)) {
-                                            echo "<option value=$linha[id_cidade]>";
-                                            echo $linha['nm_cidade'];
+                                        while ($linha = mysqli_fetch_array($resultadoRuas)) {
+                                            echo "<option value=$linha[id_rua]>";
+                                            echo $linha['nm_rua'];
                                             echo "</option>";
                                         }
                                         ?>
                                     </select>
                                 </div>
+
+                                <label class="label" for="select">Valor hora</label>
+                                <input type="text" class="input" style="width: 100px;">                                        
                             </div>
+
                             <footer class="modal-card-foot">
                                 <button class="button is-success" type="submit" value="Cadastrar">Cadastrar</button>
                                 <button class="button" id="fechar-modal-cancelar" onclick="fecharModal()">Cancel</button>
