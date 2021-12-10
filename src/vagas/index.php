@@ -1,19 +1,20 @@
 <?php
-include '../../routes/conexao.php';
+    include '../../routes/conexao.php';
 
-$sqlEstado = "SELECT id_estado, sigla FROM estado";
-$resultadoEstado = mysqli_query($conexao, $sqlEstado);
+    $sqlIdEstado = "SELECT id_estado from estado";
+    $sqlEstado = "SELECT id_estado, sigla FROM estado";
+    $resultadoEstado = mysqli_query($conexao, $sqlEstado);
 
-$sqlCidade = "SELECT id_cidade, nm_cidade FROM cidade, estado where cidade.id_estado = estado.id_estado";
-$resultadoCidade = mysqli_query($conexao, $sqlCidade);
-//$buscaCidade = mysqli_query($conexao, $sqlCidade);
+    $sqlCidade = "SELECT id_cidade, nm_cidade FROM cidade, estado where cidade.id_estado = estado.id_estado";
+    $resultadoCidade = mysqli_query($conexao, $sqlCidade);
+    //$buscaCidade = mysqli_query($conexao, $sqlCidade);
 
-$sqlRuas = "SELECT rua.id_rua, rua.nm_rua, rua.id_cidade, cidade.nm_cidade FROM rua, cidade WHERE rua.id_cidade = cidade.id_cidade";
-$resultadoRuas = mysqli_query($conexao, $sqlRuas);
-//$resultado = mysqli_query($conexao, $sql);
+    $sqlRuas = "SELECT rua.id_rua, rua.nm_rua, rua.id_cidade, cidade.nm_cidade FROM rua, cidade WHERE rua.id_cidade = cidade.id_cidade";
+    $resultadoRuas = mysqli_query($conexao, $sqlRuas);
+    //$resultado = mysqli_query($conexao, $sql);
 
-$sqlVagas = "SELECT id_vaga, nr_vaga, id_rua FROM vaga";
-$resultadoVagas = mysqli_query($conexao, $sqlVagas);
+    $sqlVagas = "SELECT id_vaga, id_estado, id_cidade , id_rua FROM vaga";
+    $resultadoVagas = mysqli_query($conexao, $sqlVagas);
 ?>
 <html>
 
@@ -55,8 +56,7 @@ $resultadoVagas = mysqli_query($conexao, $sqlVagas);
                 <thead style="font-size: 18;">
                     <th>ID</th>
                     <th>Cidade</th>
-                    <th>Rua</th>
-                    <th>Vaga</th>
+                    <th>Rua</th>                    
                     <th style="text-align: right;"> <button class="button is-success" onclick="abrirModal()" id="modal-cadastrar-vaga">+ Cadastrar</button></th>
                 </thead>
                 <tbody>
@@ -64,10 +64,13 @@ $resultadoVagas = mysqli_query($conexao, $sqlVagas);
                     while ($linha = mysqli_fetch_array($resultadoVagas)) {
                         echo "<tr>";
                         echo "<td>$linha[id_vaga]</td>";
-                        echo "<td>$linha[nr_vaga]</td>";
-                        echo "<td>$linha[ir_rua]</td>";
+                        echo "<td>$linha[id_estado]</td>";
+                        echo "<td>$linha[id_cidade]</td>";
                     ?>
-                        <td class="level-right"><a class="button is-small is-primary" href="#">Liberada</a></td>
+                      <td class="level-right">
+                            <a class="button is-small is-primary" href="#" style="margin-right: 18px;">Liberada</a>
+                            <a style="color: black;" href="../../routes/excluirVagas.php?id=<?php echo $linha['id_vaga']; ?>"><i class="fas fa-trash-alt"></i></a>
+                      </td>
                     <?php
                     }
                     ?>
